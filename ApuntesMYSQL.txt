@@ -1,0 +1,30 @@
+CREATE TABLE `tbl_fabricant` (
+    `id_fabricant` int(11) NOT NULL,
+    `nom_fabricant` varchar(50) NOT NULL,
+    `adre_fabricant` varchar(50) NULL,
+    `telf_fabricant` char(11) NULL,
+    `cp_fabricant` char(5) NULL,
+    PRIMARY KEY (`id_fabricant`)
+)
+--------------------------------------------
+CREATE TABLE tbl_moble (
+    id_moble int(11) NOT NULL,
+    nom_moble varchar(25) NOT NULL,
+    color_moble ENUM('vermell','groc','verd','gris','blau') NULL,
+    linia_moble varchar(15) NULL,
+    amplada_moble decimal(5,2) NULL,
+    alt_moble decimal(5,2) NULL,
+    fons_moble decimal(5,2) NULL,
+    id_fabricant int(11) NOT NULL,
+    PRIMARY KEY (id_moble)
+)
+--------------------------------------------
+ALTER TABLE tbl_fabricant
+	MODIFY id_fabricant int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE tbl_moble
+	MODIFY id_moble int(11) NOT NULL AUTO_INCREMENT;
+--------------------------------------------
+ALTER TABLE tbl_moble
+	ADD CONSTRAINT FK_moble_fabricant FOREIGN KEY (id_fabricant)
+    REFERENCES tbl_fabricant(id_fabricant)
